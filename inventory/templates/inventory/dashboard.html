@@ -1,0 +1,30 @@
+{% extends 'inventory/base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2>Dashboard</h2>
+
+<h3>Unread Alerts</h3>
+{% if unread_alerts %}
+<ul>
+    {% for alert in unread_alerts %}
+    <li class="alert-{{ alert.type|lower }}">[{{ alert.type }}] {{ alert.message }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No unread alerts.</p>
+{% endif %}
+
+<h3>Inventory Overview</h3>
+<table>
+    <tr><th>Item</th><th>Quantity</th><th>Unit</th><th>Min Threshold</th><th>Expiry</th></tr>
+    {% for item in items %}
+    <tr class="{% if item.checkThreshold %}low-stock{% endif %}">
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.unit }}</td>
+        <td>{{ item.minThreshold }}</td>
+        <td>{{ item.expirydate|default:"-" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

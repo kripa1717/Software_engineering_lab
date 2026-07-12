@@ -1,0 +1,23 @@
+{% extends 'inventory/base.html' %}
+{% block title %}Forecast{% endblock %}
+{% block content %}
+<h2>Demand Forecast</h2>
+<p>Period: {{ forecast.periodstart }} to {{ forecast.periodend }}</p>
+
+<h3>Reorder Suggestions</h3>
+{% if suggestions %}
+<table>
+    <tr><th>Item</th><th>Current Stock</th><th>Suggested Order Quantity</th></tr>
+    {% for s in suggestions %}
+    <tr>
+        <td>{{ s.item.name }}</td>
+        <td>{{ s.item.quantity }}</td>
+        <td>{{ s.quantity_to_order|floatformat:2 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No reorders needed for the upcoming period based on current data.</p>
+{% endif %}
+<p><em>Note: forecasting requires at least 3 months of usage history for reliable predictions (per SRS constraint C-1).</em></p>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'inventory/base.html' %}
+{% block title %}Reports{% endblock %}
+{% block content %}
+<h2>Usage / Wastage Reports</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <label>Report Type</label>
+    <select name="type">
+        <option value="Usage">Usage</option>
+        <option value="Wastage">Wastage</option>
+    </select>
+    {{ form.as_p }}
+    <button type="submit">Generate Report</button>
+</form>
+
+{% if report_data %}
+<h3>Results</h3>
+<table>
+    <tr><th>Item</th><th>Total Quantity</th></tr>
+    {% for row in report_data %}
+    <tr>
+        <td>{{ row.itemId__name }}</td>
+        <td>{{ row.total|floatformat:2 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% endblock %}

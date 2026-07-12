@@ -1,0 +1,24 @@
+{% extends 'inventory/base.html' %}
+{% block title %}Vendors{% endblock %}
+{% block content %}
+<h2>Vendor Directory</h2>
+
+<h3>Add New Vendor</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Vendor</button>
+</form>
+
+<table>
+    <tr><th>Name</th><th>Contact</th><th>Email</th><th>Quality Rating</th></tr>
+    {% for vendor in vendors %}
+    <tr>
+        <td>{{ vendor.name }}</td>
+        <td>{{ vendor.ContactNumber }}</td>
+        <td>{{ vendor.email }}</td>
+        <td>{{ vendor.qualityRating }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

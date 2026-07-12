@@ -1,0 +1,40 @@
+{% extends 'inventory/base.html' %}
+{% block title %}Inventory{% endblock %}
+{% block content %}
+<h2>Inventory Items</h2>
+
+{% if user.role == 'Admin' %}
+<h3>Add New Item</h3>
+<form method="post" action="{% url 'add_item' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Item</button>
+</form>
+{% endif %}
+
+<table>
+    <tr><th>Name</th><th>Unit</th><th>Quantity</th><th>Min Threshold</th><th>Expiry</th><th>Action</th></tr>
+    {% for item in items %}
+    <tr class="{% if item.checkThreshold %}low-stock{% endif %}">
+        <td>{{ item.name }}</td>
+        <td>{{ item.unit }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.minThreshold }}</td>
+        <td>{{ item.expirydate|default:"-" }}</td>
+        <td>
+            <form method="post" action="{% url 'update_stock' item.itemID %}" class="inline-form">
+                {% csrf_token %}
+                <input type="number" name="quantity" step="0.01" min="0" required placeholder="Qty">
+                <select name="changeType">
+                    <option value="Restock">Restock</option>
+                    <option value="Usage">Usage</option>
+                    <option value="Wastage">Wastage</option>
+                </select>
+                <input type="text" name="reason" placeholder="Reason (optional)">
+                <button type="submit">Update</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

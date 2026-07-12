@@ -1,0 +1,22 @@
+{% extends 'inventory/base.html' %}
+{% block title %}Alerts{% endblock %}
+{% block content %}
+<h2>Alerts</h2>
+<table>
+    <tr><th>Type</th><th>Item</th><th>Message</th><th>Created</th><th>Status</th><th>Action</th></tr>
+    {% for alert in alerts %}
+    <tr class="{% if not alert.IsRead %}unread{% endif %}">
+        <td>{{ alert.type }}</td>
+        <td>{{ alert.itemId.name }}</td>
+        <td>{{ alert.message }}</td>
+        <td>{{ alert.createdAt|date:"Y-m-d H:i" }}</td>
+        <td>{% if alert.IsRead %}Read{% else %}Unread{% endif %}</td>
+        <td>
+            {% if not alert.IsRead %}
+            <a href="{% url 'mark_alert_read' alert.alertId %}">Mark as Read</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

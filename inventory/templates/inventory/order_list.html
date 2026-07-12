@@ -1,0 +1,31 @@
+{% extends 'inventory/base.html' %}
+{% block title %}Orders{% endblock %}
+{% block content %}
+<h2>Order History</h2>
+
+<h3>Place New Order</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Place Order</button>
+</form>
+
+<table>
+    <tr><th>Item</th><th>Vendor</th><th>Quantity</th><th>Total Cost</th><th>Status</th><th>Date</th><th>Action</th></tr>
+    {% for order in orders %}
+    <tr>
+        <td>{{ order.itemId.name }}</td>
+        <td>{{ order.vendorId.name }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>{{ order.totalCost|default:"-" }}</td>
+        <td>{{ order.status }}</td>
+        <td>{{ order.orderDate|date:"Y-m-d H:i" }}</td>
+        <td>
+            {% if order.status != 'Delivered' %}
+            <a href="{% url 'confirm_delivery' order.OrderId %}">Confirm Delivery</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
