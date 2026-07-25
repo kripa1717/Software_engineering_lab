@@ -48,7 +48,7 @@ This project tries to solve that by giving the business one place to manage stoc
 
 - **Python 3** – the language the whole backend is written in
 - **Django (5.x)** – the web framework. It handles routing, the database layer (ORM), the built-in admin panel, forms, authentication, and templating, so I didn't have to build any of that from scratch
-- **SQLite** – the database. Django uses this by default and it needs zero setup, which is perfect for a student/demo project (no need to install and configure something like PostgreSQL)
+- **SQLite** – the database. Django uses this by default and it needs zero setup (no need to install and configure something like PostgreSQL)
 - **Django's built-in auth system** – used for login/logout/password hashing instead of writing custom authentication (safer and less code)
 - **HTML + CSS (vanilla)** – the templates and the one stylesheet (`style.css`) for styling. No frontend framework was used, everything is rendered server-side with Django templates
 - **JavaScript** – there's a `script.js` file included for future use, but currently the site doesn't need any custom JS since everything is done with normal form submissions
@@ -59,6 +59,7 @@ This project tries to solve that by giving the business one place to manage stoc
 ims/
 ├── manage.py                  # Django's command-line tool, used to run the server, make migrations, etc.
 ├── requirements.txt           # Only dependency: Django
+├── screenshots/                # Screenshots of the app used in this README
 ├── ims_project/                # The main project settings folder
 │   ├── settings.py            # All Django configuration (database, apps, auth, timezone, etc.)
 │   ├── urls.py                # Root URL config — sends requests to the inventory app
@@ -163,7 +164,7 @@ ims/
 ![Demand Forecast](screenshots/demand_forecast.png)
 
 ### Report
-![Report](screenshots/report.png
+![Report](screenshots/report.png)
 
 
 ## Future Improvements
