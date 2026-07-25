@@ -132,12 +132,39 @@ ims/
 
 ## Screenshots
 
-*(add screenshots here once the app is running)*
+### Login
+![Login](screenshots/login_dashboard.png)
 
-- Login page
-- Dashboard
-- Inventory list
-- Alerts page
+### Registering a New User
+![Registering New Username](screenshots/registering_new_username.png)
+
+### Main Dashboard
+![Main Dashboard](screenshots/main_dashboard.png)
+
+### Inventory Dashboard
+![Inventory Dashboard](screenshots/inventory_dashboard.png)
+
+### Adding Items to Inventory
+![Adding Items](screenshots/adding_items_to_inventory.png)
+
+### Item Added Successfully
+![Item Added Successfully](screenshots/item_added_successfully.png)
+
+### Alerts
+![Alerts](screenshots/alerts.png)
+
+### Vendor Management
+![Vendor Management](screenshots/vendor_management.png)
+
+### Placing an Order
+![Order Placed Successfully](screenshots/order_placed_successfully.png)
+
+### Demand Forecast
+![Demand Forecast](screenshots/demand_forecast.png)
+
+### Report
+![Report](screenshots/report.png
+
 
 ## Future Improvements
 
